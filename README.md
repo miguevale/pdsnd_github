@@ -16,5 +16,5 @@ data/new_york_city.csv
 data/washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Thanks Udacity
+Repo forked from: https://github.com/udacity/pdsnd_github
