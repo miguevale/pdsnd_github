@@ -70,7 +70,7 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    df = pd.read_csv(CITY_DATA[city])
+    df = pd.read_csv(CITY_DATA[city],index_col=0)
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['End Time'] = pd.to_datetime(df['End Time'])
 
@@ -169,12 +169,23 @@ def user_stats(df):
     start_time = time.time()
 
     # Display counts of user types
-
+    df['Users'] = np.ones(df.shape[0])
+    print(f'Count of User Types:')
+    print(df[['User Type','Users']].groupby('User Type').count())
+    print('-'*20)
 
     # Display counts of gender
-
+    print(f'Count of Gender:')
+    print(df[['Gender','Users']].groupby('Gender').count())
+    print('-'*20)
 
     # Display earliest, most recent, and most common year of birth
+    earl = df['Birth Year'].min()
+    rece = df['Birth Year'].max()
+    comm = df['Birth Year'].mode()
+    print(f'The earliest year of birth is: {earl}')
+    print(f'The most recent year of birth is: {rece}')
+    print(f'The most common year of birth is: {comm}')
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
